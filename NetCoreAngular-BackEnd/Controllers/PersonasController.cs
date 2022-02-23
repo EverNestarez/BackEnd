@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using NetCoreAngular_BackEnd.DTOs;
 using NetCoreAngular_BackEnd.Entidades;
 using NetCoreAngular_BackEnd.Utilidades;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +23,7 @@ namespace NetCoreAngular_BackEnd.Controllers
         public personasController(ILogger<
             personasController> logger,
             ApplicationDbContext context,
-            IMapper mapper) 
+            IMapper mapper)
         {
 
             this.logger = logger;
@@ -33,7 +32,8 @@ namespace NetCoreAngular_BackEnd.Controllers
         }
 
         [HttpGet("Listar")]
-        public async Task<ActionResult<List<PersonaDTO>>> Get([FromQuery] PaginacionDTO paginacionDTO) {
+        public async Task<ActionResult<List<PersonaDTO>>> Get([FromQuery] PaginacionDTO paginacionDTO)
+        {
 
             var queryable = context.Personas.AsQueryable();
 
@@ -45,7 +45,8 @@ namespace NetCoreAngular_BackEnd.Controllers
         }
 
         [HttpGet("Buscar/{idPersona:int}")]
-        public async Task<ActionResult<PersonaDTO>> Get(int idPersona) {
+        public async Task<ActionResult<PersonaDTO>> Get(int idPersona)
+        {
             var persona = await context.Personas.FirstOrDefaultAsync(x => x.idPersona == idPersona);
             if (persona == null)
             {
@@ -55,7 +56,8 @@ namespace NetCoreAngular_BackEnd.Controllers
         }
 
         [HttpPost("Registrar")]
-        public async Task<ActionResult> Post([FromBody] PersonaCrearDTO personaCrearDTO){
+        public async Task<ActionResult> Post([FromBody] PersonaCrearDTO personaCrearDTO)
+        {
             var persona = mapper.Map<Persona>(personaCrearDTO);
             context.Add(persona);
             await context.SaveChangesAsync();
@@ -63,7 +65,8 @@ namespace NetCoreAngular_BackEnd.Controllers
 
         }
         [HttpPut("Actualizar/{idPersona:int}")]
-        public async Task<ActionResult> Put(int idPersona, [FromBody] PersonaCrearDTO personaCrearDTO) {
+        public async Task<ActionResult> Put(int idPersona, [FromBody] PersonaCrearDTO personaCrearDTO)
+        {
 
             var persona = await context.Personas.FirstOrDefaultAsync(x => x.idPersona == idPersona);
             if (persona == null)
@@ -76,7 +79,8 @@ namespace NetCoreAngular_BackEnd.Controllers
             return NoContent();
         }
         [HttpDelete("Eliminar/{idPersona:int}")]
-        public async Task<ActionResult> Delete(int idPersona) {
+        public async Task<ActionResult> Delete(int idPersona)
+        {
             var existe = await context.Personas.AnyAsync(x => x.idPersona == idPersona);
             if (!existe)
             {

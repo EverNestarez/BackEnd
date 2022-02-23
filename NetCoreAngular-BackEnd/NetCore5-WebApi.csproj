@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>NetCoreAngular_BackEnd</RootNamespace>
+    <RootNamespace>NetCore5-WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

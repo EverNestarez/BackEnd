@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using NetCoreAngular_BackEnd.Filtros;
 
@@ -24,17 +22,20 @@ namespace NetCoreAngular_BackEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<ApplicationDbContext>(options => 
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
 
-            services.AddCors(Options => {
+            services.AddCors(Options =>
+            {
                 var URL = Configuration.GetValue<string>("FrontEnd");
-                Options.AddDefaultPolicy(builder => {
+                Options.AddDefaultPolicy(builder =>
+                {
                     builder.WithOrigins(URL).AllowAnyMethod().AllowAnyHeader()
                     .WithExposedHeaders(new string[] { "cantidadTotalRegistros" });
                 });
             });
-            services.AddControllers(Options => {
+            services.AddControllers(Options =>
+            {
                 Options.Filters.Add(typeof(FiltroExcepcion));
             });
             services.AddSwaggerGen(c =>

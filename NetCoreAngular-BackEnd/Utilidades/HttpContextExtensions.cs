@@ -16,8 +16,8 @@ namespace NetCoreAngular_BackEnd.Utilidades
                 throw new ArgumentNullException(nameof(httpContext));
             }
             double cantidad = await queryable.CountAsync();
-            httpContext.Response.Headers.Add("cantidadTotalRegistros",cantidad.ToString());
-            
+            httpContext.Response.Headers.Add("cantidadTotalRegistros", cantidad.ToString());
+
         }
     }
 }

@@ -46,7 +46,8 @@ namespace NetCoreAngular_BackEnd.Controllers
             return mapper.Map<DireccionDTO>(direccion);
         }
         [HttpPost("Registrar")]
-        public async Task<ActionResult> Post([FromBody] DireccionCrearDTO direccionCrearDTO){
+        public async Task<ActionResult> Post([FromBody] DireccionCrearDTO direccionCrearDTO)
+        {
             var direccion = mapper.Map<Direccion>(direccionCrearDTO);
             context.Add(direccion);
             await context.SaveChangesAsync();

@@ -12,7 +12,10 @@ namespace NetCoreAngular_BackEnd
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PersonaDireccion>()
-                .HasKey(x => new { x.PersonaID, x.DireccionID 
+                .HasKey(x => new
+                {
+                    x.PersonaID,
+                    x.DireccionID
                 });
 
             base.OnModelCreating(modelBuilder);
